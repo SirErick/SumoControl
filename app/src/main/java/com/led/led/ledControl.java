@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class ledControl extends ActionBarActivity {
 
-    Button btnOn, btnOff, btnDis;
+    Button btnOn, btnOff, btnDis, btnizq, btnder;
     SeekBar brightness;
     TextView lumn;
     String address = null;
@@ -36,8 +36,7 @@ public class ledControl extends ActionBarActivity {
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent newint = getIntent();
@@ -47,72 +46,53 @@ public class ledControl extends ActionBarActivity {
         setContentView(R.layout.activity_led_control);
 
         //call the widgtes
-        btnOn = (Button)findViewById(R.id.button2);
-        btnOff = (Button)findViewById(R.id.button3);
-        btnDis = (Button)findViewById(R.id.button4);
-        brightness = (SeekBar)findViewById(R.id.seekBar);
-        lumn = (TextView)findViewById(R.id.lumn);
+        btnOn = (Button) findViewById(R.id.button2);
+        btnOff = (Button) findViewById(R.id.button3);
+        btnDis = (Button) findViewById(R.id.button4);
+        btnizq= (Button) findViewById(R.id.button5);
+        btnder=(Button) findViewById(R.id.button6);
 //..............
 
         new ConnectBT().execute(); //Call the class to connect
 
         //commands to be sent to bluetooth
-        btnOn.setOnClickListener(new View.OnClickListener()
-        {
+        btnOn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 turnOnLed();      //method to turn on
             }
         });
 
         btnOff.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 turnOffLed();   //method to turn off
             }
         });
 
-        btnDis.setOnClickListener(new View.OnClickListener()
-        {
+        btnDis.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Disconnect(); //close connection
             }
         });
-
-
-//yes
-        brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        btnizq.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser==true)
-                {
-                    lumn.setText(String.valueOf(progress));
-                    try
-                    {
-                        btSocket.getOutputStream().write(String.valueOf(progress).getBytes());
-                    }
-                    catch (IOException e)
-                    {
-
-                    }
-                }
+            public void onClick(View v) {
+                izquierda();      //method to turn on
             }
-
+        });
+        btnder.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onClick(View v) {
+                derecha();      //method to turn on
             }
         });
     }
+
+//yes
+
+
 
 //yes
     private void Disconnect()
@@ -152,6 +132,34 @@ public class ledControl extends ActionBarActivity {
             try
             {
                 btSocket.getOutputStream().write("TO".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+    private void derecha()
+    {
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("DER".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+    private void izquierda()
+    {
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("IZQ".toString().getBytes());
             }
             catch (IOException e)
             {
