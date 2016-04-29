@@ -6,7 +6,7 @@
         <item name="colorPrimary">#CDDC39</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="colorButtonNormal">#00BFA5</item>
     </style>
 
 </resources>
