@@ -14,22 +14,30 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/Imagen"
+        android:layout_below="@+id/textView2"
+        android:layout_centerCrop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adelante"
+        android:text="ADELANTE"
         android:id="@+id/button2"
-        android:layout_marginTop="136dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Atrás"
+        android:text="ATRÁS"
         android:id="@+id/button3"
-        android:layout_marginTop="54dp"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -37,27 +45,27 @@
         android:layout_height="wrap_content"
         android:text="Disconnect"
         android:id="@+id/button4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Izquierda"
+        android:text="IZQUIERDA"
         android:id="@+id/button5"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/button3"
-        android:layout_toStartOf="@+id/button3" />
+        android:layout_above="@+id/button3"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Derecha"
+        android:text="DERECHA"
         android:id="@+id/button6"
-        android:layout_alignTop="@+id/button5"
+        android:layout_below="@+id/button2"
         android:layout_toRightOf="@+id/button3"
         android:layout_toEndOf="@+id/button3" />
 
