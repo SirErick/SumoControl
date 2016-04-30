@@ -42,10 +42,10 @@ public class ledControl extends ActionBarActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
 
-        //view of the ledControl
+        //vista de nuevo activity
         setContentView(R.layout.activity_led_control);
 
-        //call the widgtes
+        //botones
         btnOn = (Button) findViewById(R.id.button2);
         btnOff = (Button) findViewById(R.id.button3);
         btnDis = (Button) findViewById(R.id.button4);
@@ -62,14 +62,12 @@ public class ledControl extends ActionBarActivity {
                 turnOnLed();      //method to turn on
             }
         });
-
         btnOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 turnOffLed();   //method to turn off
             }
         });
-
         btnDis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,12 +200,12 @@ public class ledControl extends ActionBarActivity {
 //yes
     private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
     {
-        private boolean ConnectSuccess = true; //if it's here, it's almost connected
+        private boolean ConnectSuccess = true; //para ver si ests conectado
 
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(ledControl.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+            progress = ProgressDialog.show(ledControl.this, "Connecting...", "Please wait!!!");  //mostrar un dialogo de proceso
         }
 
         @Override

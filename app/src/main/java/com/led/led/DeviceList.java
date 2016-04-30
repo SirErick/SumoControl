@@ -37,24 +37,24 @@ public class DeviceList extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
 
-        //Calling widgets
+        //Clases
         btnPaired = (Button)findViewById(R.id.button);
         devicelist = (ListView)findViewById(R.id.listView);
 
-        //if the device has bluetooth
+        //buscar el bluetooth
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
 
         if(myBluetooth == null)
         {
-            //Show a mensag. that the device has no bluetooth adapter
+            //mostrar el mensaje si no se encuentra el dispositivo bluetooth
             Toast.makeText(getApplicationContext(), "Bluetooth Device Not Available", Toast.LENGTH_LONG).show();
 
-            //finish apk
+            //finalizar
             finish();
         }
         else if(!myBluetooth.isEnabled())
         {
-            //Ask to the user turn the bluetooth on
+            //preguntar al usuario si desea encender el bluetooth
             Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnBTon,1);
         }
@@ -78,17 +78,18 @@ public class DeviceList extends ActionBarActivity
         {
             for(BluetoothDevice bt : pairedDevices)
             {
-                list.add(bt.getName() + "\n" + bt.getAddress()); //Get the device's name and the address
+                list.add(bt.getName() + "\n" + bt.getAddress()); //Tomar el nombre de los dispositivos emparejados y su direccion
             }
         }
         else
         {
+            //cuando no hay dispositivos emparejados
             Toast.makeText(getApplicationContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
         }
 
         final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         devicelist.setAdapter(adapter);
-        devicelist.setOnItemClickListener(myListClickListener); //Method called when the device from the list is clicked
+        devicelist.setOnItemClickListener(myListClickListener); //Metodo llamado al clickear el boton de lista
 
     }
 
@@ -100,7 +101,7 @@ public class DeviceList extends ActionBarActivity
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
-            // Make an intent to start next activity.
+            // hacer un nuevo intent para comenzar otro activity
             Intent i = new Intent(DeviceList.this, ledControl.class);
 
             //Change the activity.
